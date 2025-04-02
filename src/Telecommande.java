@@ -21,5 +21,14 @@ public class Telecommande {
     }
 
     public void activerTout() {
+        throw new Error ( " code non ecrit " );
+    }
+
+    public String toString(){
+        throw new Error ( " code non ecrit " );
+    }
+
+    public ArrayList<Lampe> getLampes() {
+        return this.lampes;
     }
 }
