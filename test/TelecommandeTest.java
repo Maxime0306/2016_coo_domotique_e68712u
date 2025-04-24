@@ -1,63 +1,82 @@
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-class TelecommandeTest {
+public class TelecommandeTest {
 
-    @BeforeEach
-    void setUp() {
-    }
 
-    @AfterEach
-    void tearDown() {
+    @Test
+    public void testAjouterLampe_lvide() {
+        // Préparation des données
+        Lampe l = new Lampe("lampe1");
+        Telecommande t = new Telecommande();
+
+        // Action
+        t.ajouterPeri(l);
+
+        // Vérification : est-ce que la lampe est bien dans la liste ?
+        assertTrue(t.getPeri().contains(l), "La lampe devrait être ajoutée à la télécommande");
     }
 
     @Test
-    //    ajout d'une lampe à une télécommande vide ;
-    public void ajoutLampe0(){
-        Telecommande t1 = new Telecommande();
-        t1.ajouterLampe(new Lampe("lampe1"));
-        assertEquals(1,t1.getLampes().size(), "la taille devrait être de 1");
+    public void testAjouterLampe_l1elmt() {
+        // Préparation des données
+        Lampe l = new Lampe("lampe1");
+        Lampe l2 = new Lampe("lampe2");
+        Telecommande t = new Telecommande();
+
+        // Action
+        t.ajouterPeri(l);
+        t.ajouterPeri(l2);
+
+        // Vérification : est-ce que la lampe est bien dans la liste ?
+        assertTrue(t.getPeri().contains(l2), "La lampe devrait être ajoutée à la télécommande");
     }
 
     @Test
-    //    ajout d'une lampe à une télécommande avec 1 élément ;
-    public void ajoutLampe1(){
-        Telecommande t1 = new Telecommande();
-        t1.ajouterLampe(new Lampe("lampe1"));
-        t1.ajouterLampe(new Lampe("lampe2"));
-        assertEquals(2,t1.getLampes().size(), "la taille devrait être de 2");
+    public void testActiverLampe_position0() {
+        Telecommande t = new Telecommande();
+        Lampe l1 = new Lampe("lampe1");
+        Lampe l2 = new Lampe("lampe2");
+
+        t.ajouterPeri(l1);
+        t.ajouterPeri(l2);
+
+        t.activerPeri(0);
+
+        assertTrue(l1.isAllume(), "La lampe à l’index 0 doit être allumée");
+        assertFalse(l2.isAllume(), "La lampe à l’index 1 ne doit pas être allumée");
     }
 
     @Test
-    //    activation d'une lampe existante en position 0 ;
-    public void activerLampe0(){
-        Telecommande t1 = new Telecommande();
-        t1.ajouterLampe(new Lampe("lampe1"));
-        t1.ajouterLampe(new Lampe("lampe2"));
-        t1.activerLampe(0);
-        assertEquals(true, t1.getLampes().get(0).isAllume());
+    public void testActiverLampe_position1() {
+        Telecommande t = new Telecommande();
+        Lampe l1 = new Lampe("lampe1");
+        Lampe l2 = new Lampe("lampe2");
+
+        t.ajouterPeri(l1);
+        t.ajouterPeri(l2);
+
+        t.activerPeri(1);
+
+        assertFalse(l1.isAllume(), "La lampe à l’index 0 ne doit pas être allumée");
+        assertTrue(l2.isAllume(), "La lampe à l’index 1 doit être allumée");
     }
 
     @Test
-    //    activation d'une lampe existante en position 1 ;
-    public void activerLampe1(){
-        Telecommande t1 = new Telecommande();
-        t1.ajouterLampe(new Lampe("lampe1"));
-        t1.ajouterLampe(new Lampe("lampe2"));
-        t1.activerLampe(1);
-        assertEquals(true, t1.getLampes().get(1).isAllume());
-    }
+    public void testActiverLampe_inexitante() {
+        Telecommande t = new Telecommande();
+        Lampe l1 = new Lampe("lampe1");
+        Lampe l2 = new Lampe("lampe2");
 
-    @Test
-    //    activation d'une lampe inexistante.
-    public void activerLampe2(){
-        Telecommande t1 = new Telecommande();
-        t1.ajouterLampe(new Lampe("lampe1"));
-        t1.ajouterLampe(new Lampe("lampe2"));
-        t1.activerLampe(3);
-        assertEquals(false, t1.getLampes().get(3).isAllume());
+        t.ajouterPeri(l1);
+        t.ajouterPeri(l2);
+
+        //verification
+        IndexOutOfBoundsException e = assertThrows(IndexOutOfBoundsException.class, () -> {
+            t.activerPeri(2);
+        });
+
+
     }
 }

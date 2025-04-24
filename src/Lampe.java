@@ -42,6 +42,10 @@ public class Lampe implements Peripherique{
         this.allume = false;
     }
 
+    public boolean isAllume() {
+        return allume;
+    }
+
     /**
      * retourne le descriptif de la lampe sous la forme nom + "On"/"Off"
      */

@@ -11,10 +11,22 @@ public class Telecommande {
         this.peripherique.add(p);
     }
 
+    public void activerPeri(int i) {
+        this.peripherique.get(i).allumer();
+    }
+
+    public void desactiverPeri(int i) {
+        this.peripherique.get(i).eteindre();
+    }
+
     public void activerTout() {
         for (Peripherique peripherique : this.peripherique) {
             peripherique.allumer();
         }
+    }
+
+    public ArrayList<Peripherique> getPeri() {
+        return this.peripherique;
     }
 
     public String toString() {
