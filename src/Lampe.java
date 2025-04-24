@@ -5,7 +5,7 @@
  * prive et manipulable par les methodes allumer et eteindre
  */
 
-public class Lampe {
+public class Lampe implements Peripherique{
 
     /**
      * nom de la lampe
@@ -55,12 +55,4 @@ public class Lampe {
         return (nom + ": " + r);
     }
 
-    /**
-     * permet de savoir si la lampe est allumee
-     *
-     * @return etat de la lampe
-     */
-    public boolean isAllume() {
-        return allume;
-    }
 }
