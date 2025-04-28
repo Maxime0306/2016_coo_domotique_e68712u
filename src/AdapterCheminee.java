@@ -1,8 +1,8 @@
-public class Adapter  implements Peripherique{
+public class AdapterCheminee  implements Peripherique{
 
     private Cheminee cheminee;
 
-    public Adapter(Cheminee cheminee) {
+    public AdapterCheminee(Cheminee cheminee) {
         this.cheminee = cheminee;
     }
 
@@ -16,5 +16,9 @@ public class Adapter  implements Peripherique{
 
     public int getIntensite() {
         return this.cheminee.getLumiere();
+    }
+
+    public String toString() {
+        return this.cheminee.toString();
     }
 }

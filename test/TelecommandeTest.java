@@ -81,7 +81,7 @@ public class TelecommandeTest {
     @Test
     public void testAdapterConstructeur() {
         Cheminee cheminee = new Cheminee();
-        Adapter adapter = new Adapter(cheminee);
+        AdapterCheminee adapter = new AdapterCheminee(cheminee);
 
         assertEquals(0, adapter.getIntensite(), "L'intensité initiale devrait être 0");
     }
@@ -89,7 +89,7 @@ public class TelecommandeTest {
     @Test
     public void testAdapterAllumer() {
         Cheminee cheminee = new Cheminee();
-        Adapter adapter = new Adapter(cheminee);
+        AdapterCheminee adapter = new AdapterCheminee(cheminee);
 
         adapter.allumer();
 
@@ -100,7 +100,7 @@ public class TelecommandeTest {
     public void testAdapterEteindre() {
         Cheminee cheminee = new Cheminee();
         cheminee.changerIntensite(50); // On met une valeur non nulle
-        Adapter adapter = new Adapter(cheminee);
+        AdapterCheminee adapter = new AdapterCheminee(cheminee);
 
         adapter.eteindre();
 
@@ -111,7 +111,7 @@ public class TelecommandeTest {
     public void testTelecommandeAvecAdapter() {
         Telecommande t = new Telecommande();
         Cheminee cheminee = new Cheminee();
-        Adapter adapter = new Adapter(cheminee);
+        AdapterCheminee adapter = new AdapterCheminee(cheminee);
 
         t.ajouterPeri(adapter);
 
@@ -132,7 +132,7 @@ public class TelecommandeTest {
         Telecommande t = new Telecommande();
         Lampe l1 = new Lampe("lampe1");
         Cheminee cheminee = new Cheminee();
-        Adapter adapter = new Adapter(cheminee);
+        AdapterCheminee adapter = new AdapterCheminee(cheminee);
 
         t.ajouterPeri(l1);
         t.ajouterPeri(adapter);

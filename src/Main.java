@@ -1,3 +1,4 @@
+import thermos.Thermostat;
 
 public class Main {
 
@@ -13,11 +14,13 @@ public class Main {
 		Hifi h1 = new Hifi();
 		t.ajouterPeri(h1);
 
-		Adapter a1 = new Adapter(new  Cheminee());
-		t.ajouterPeri(a1);
+		AdapterCheminee c1 = new AdapterCheminee(new  Cheminee());
+		t.ajouterPeri(c1);
+
+		AdapterThermostat t1 = new AdapterThermostat(new Thermostat());
+		t.ajouterPeri(t1);
 		
 		TelecommandeGraphique tg=new TelecommandeGraphique(t);
-
 
 		
 	}

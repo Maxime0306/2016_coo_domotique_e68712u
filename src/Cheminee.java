@@ -48,6 +48,6 @@ public class Cheminee {
      */
     public String toString()
     {
-        return("cheminee: "+intensite);
+        return("Cheminee: "+intensite);
     }
 }
