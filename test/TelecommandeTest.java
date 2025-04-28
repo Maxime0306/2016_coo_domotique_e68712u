@@ -76,7 +76,71 @@ public class TelecommandeTest {
         IndexOutOfBoundsException e = assertThrows(IndexOutOfBoundsException.class, () -> {
             t.activerPeri(2);
         });
-
-
     }
+
+    @Test
+    public void testAdapterConstructeur() {
+        Cheminee cheminee = new Cheminee();
+        Adapter adapter = new Adapter(cheminee);
+
+        assertEquals(0, adapter.getIntensite(), "L'intensité initiale devrait être 0");
+    }
+
+    @Test
+    public void testAdapterAllumer() {
+        Cheminee cheminee = new Cheminee();
+        Adapter adapter = new Adapter(cheminee);
+
+        adapter.allumer();
+
+        assertEquals(10, adapter.getIntensite(), "L'intensité après allumage devrait être 10");
+    }
+
+    @Test
+    public void testAdapterEteindre() {
+        Cheminee cheminee = new Cheminee();
+        cheminee.changerIntensite(50); // On met une valeur non nulle
+        Adapter adapter = new Adapter(cheminee);
+
+        adapter.eteindre();
+
+        assertEquals(0, adapter.getIntensite(), "L'intensité après extinction devrait être 0");
+    }
+
+    @Test
+    public void testTelecommandeAvecAdapter() {
+        Telecommande t = new Telecommande();
+        Cheminee cheminee = new Cheminee();
+        Adapter adapter = new Adapter(cheminee);
+
+        t.ajouterPeri(adapter);
+
+        // Vérifier que l'adaptateur est bien ajouté
+        assertTrue(t.getPeri().contains(adapter), "L'adaptateur devrait être dans la télécommande");
+
+        // Activer la cheminée via la télécommande
+        t.activerPeri(0);
+        assertEquals(10, adapter.getIntensite(), "L'intensité après activation devrait être 10");
+
+        // Désactiver la cheminée via la télécommande
+        t.desactiverPeri(0);
+        assertEquals(0, adapter.getIntensite(), "L'intensité après désactivation devrait être 0");
+    }
+
+    @Test
+    public void testActiverToutAvecAdapter() {
+        Telecommande t = new Telecommande();
+        Lampe l1 = new Lampe("lampe1");
+        Cheminee cheminee = new Cheminee();
+        Adapter adapter = new Adapter(cheminee);
+
+        t.ajouterPeri(l1);
+        t.ajouterPeri(adapter);
+
+        t.activerTout();
+
+        assertTrue(l1.isAllume(), "La lampe devrait être allumée");
+        assertEquals(10, adapter.getIntensite(), "L'intensité de la cheminée devrait être 10");
+    }
+
 }

@@ -25,6 +25,10 @@ public class Telecommande {
         }
     }
 
+    public int getNombre(){
+        return this.peripherique.size();
+    }
+
     public ArrayList<Peripherique> getPeri() {
         return this.peripherique;
     }
